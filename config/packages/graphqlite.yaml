@@ -2,6 +2,7 @@
 graphqlite:
   namespace:
     # controllers: App\GraphqlController\
-    controllers: App\Controller\
+    controllers: App\Controller\GraphQl\
+    # controllers: App\Controller\
     types:
       - App\
