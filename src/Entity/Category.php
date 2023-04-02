@@ -6,8 +6,12 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use TheCodingMachine\GraphQLite\Annotations\Type;
+use TheCodingMachine\GraphQLite\Annotations\Field;
+
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[Type]
 class Category
 {
     #[ORM\Id]
@@ -26,11 +30,13 @@ class Category
         $this->products = new ArrayCollection();
     }
 
+    #[Field]
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    #[Field]
     public function getName(): ?string
     {
         return $this->name;
@@ -71,5 +77,21 @@ class Category
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+
+    
+    /**
+     * @return Product[]
+     */
+    #[Field]
+    public function getProductList(): array 
+    {
+        return [];
     }
 }
